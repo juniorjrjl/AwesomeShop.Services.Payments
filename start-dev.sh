@@ -1,0 +1,1 @@
+dotnet run --project AwesomeShop.Services.Payments.API/AwesomeShop.Services.Payments.API.csproj

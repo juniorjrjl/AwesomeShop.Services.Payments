@@ -1,0 +1,37 @@
+services:
+  paymentsapi:
+    build:
+      context: .
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      Mongo__ConnectionStrings: mongodb://payment-service:payment-service@customerdb:27017
+      Mongo__Database: payment-service
+      RabbitMQ__Host: crow-01.rmq.cloudamqp.com
+      RabbitMQ__User: cnxoyvms
+      RabbitMQ__Password: QlHhmVNnNeGL_s3rx9uAZ4icwcVBKo9I
+      RabbitMQ__Port: 5672
+      RabbitMQ__VirtualHost: cnxoyvms
+      Urls: http://+:5005
+    command: bash start-dev.sh
+    ports:
+      - "5005:5005"
+    networks:
+      - awesome-shop-services-net
+    volumes:
+      - .:/AwesomeShop.Services.Customers
+    depends_on:
+      - paymentsdb
+  paymentsdb:
+    image: mongodb/mongodb-community-server:7.0.5-ubi8
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: payment-service
+      MONGO_INITDB_ROOT_PASSWORD: payment-service
+    ports:
+      - "27021:27017"
+    networks:
+      - awesome-shop-services-net
+
+networks:
+  awesome-shop-services-net:
+    name: awesome-shop-services-net
+    external: true
