@@ -4,7 +4,7 @@ services:
       context: .
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      Mongo__ConnectionStrings: mongodb://payment-service:payment-service@customerdb:27017
+      Mongo__ConnectionStrings: mongodb://payment-service:payment-service@paymentsdb:27017
       Mongo__Database: payment-service
       RabbitMQ__Host: crow-01.rmq.cloudamqp.com
       RabbitMQ__User: cnxoyvms

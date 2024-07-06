@@ -1,3 +1,3 @@
 namespace AwesomeShop.Services.Payments.API.Infrastructure.Repositories;
 
-public record MongoDBOptions(string ConnectionString, string Database);
+public record MongoDBOptions(string ConnectionStrings, string Database);
